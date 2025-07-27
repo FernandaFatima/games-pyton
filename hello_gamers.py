@@ -6,10 +6,18 @@ from random import randint # Import necessary libraries
 # Initialize Pygame
 pygame.init()
 
+pygame.mixer.music.set_volume(0.2) # Set the volume for background music
+musica_de_fundo = pygame.mixer.music.load("BoxCat Games - Victory.mp3") # Load background music
+pygame.mixer.music.play(-1) # Play the music in a loop
+
+barulho_colisao = pygame.mixer.Sound("smw_coin.wav") # Load sound effect for collision
+barulho_colisao.set_volume(0.6) # Set the volume for the sound effect
+
 largura = 640
 altura = 480
-x = largura/2
-y = altura/2
+
+x = int (largura/2)
+y = int (altura/2)
 
 x_azul = randint(40, 600)
 y_azul = randint(50, 430)
@@ -41,6 +49,7 @@ while True:
         x_azul = randint(40, 600)
         y_azul = randint(50, 430) # Move the blue square to a new random position
         pontos = pontos + 1 # Increment points on collision
+        barulho_colisao.play()
     tela.blit(texto_formatado, (450, 40)) # Draw the points on the screen
 
 
